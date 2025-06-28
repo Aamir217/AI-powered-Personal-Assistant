@@ -1,6 +1,7 @@
 "use client"
 import React, { Children } from 'react'
 import { ThemeProvider as NextThemesProvider } from "next-themes"
+import { GoogleOAuthProvider } from '@react-oauth/google';
 function Provider({
     children,
 }: Readonly<{
@@ -8,7 +9,8 @@ function Provider({
 }>
 ) {
     return (
-        <NextThemesProvider
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+            <NextThemesProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
@@ -17,6 +19,8 @@ function Provider({
                 {children}
             </div>
         </NextThemesProvider>
+        </GoogleOAuthProvider>
+        
     )
 }
 
